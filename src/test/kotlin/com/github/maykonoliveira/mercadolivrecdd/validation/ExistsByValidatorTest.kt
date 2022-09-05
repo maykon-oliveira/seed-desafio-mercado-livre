@@ -6,19 +6,14 @@ import org.hibernate.validator.internal.util.annotation.AnnotationDescriptor
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
-import org.mockito.junit.jupiter.MockitoExtension
-import org.springframework.boot.test.context.SpringBootTest
 import javax.persistence.EntityManager
 import javax.persistence.Query
 import javax.validation.ConstraintValidatorContext
 
 
-@ExtendWith(MockitoExtension::class)
-@SpringBootTest
 internal class ExistsByValidatorTest {
 
     private lateinit var validator: ExistsByValidator
@@ -38,7 +33,10 @@ internal class ExistsByValidatorTest {
         Mockito.`when`(emMock.createQuery(ArgumentMatchers.anyString())).thenReturn(queryMock)
 
         val annotation =
-            AnnotationDescriptor.Builder(ExistsBy::class.java, mapOf("fieldName" to "login", "domainClass" to User::class.java))
+            AnnotationDescriptor.Builder(
+                ExistsBy::class.java,
+                mapOf("fieldName" to "login", "domainClass" to User::class.java)
+            )
                 .build().annotation
 
         validator.initialize(annotation)
@@ -55,7 +53,10 @@ internal class ExistsByValidatorTest {
         Mockito.`when`(emMock.createQuery(ArgumentMatchers.anyString())).thenReturn(queryMock)
 
         val annotation =
-            AnnotationDescriptor.Builder(ExistsBy::class.java, mapOf("fieldName" to "login", "domainClass" to User::class.java))
+            AnnotationDescriptor.Builder(
+                ExistsBy::class.java,
+                mapOf("fieldName" to "login", "domainClass" to User::class.java)
+            )
                 .build().annotation
 
         validator.initialize(annotation)
