@@ -13,6 +13,6 @@ data class CreateUserForm(
     val password: String?,
 ) {
     fun toDomain(): User {
-        return User(login!!, password!!)
+        return User(login!!, RawPassword(password!!))
     }
 }
